@@ -1,0 +1,15 @@
+const fullName = 'ashley shelter';
+const isCool = false;
+const totalPets = 2;
+console.log('full name', fullName);
+console.log('is Cool?', isCool);
+console.log('total pets', totalPets);
+console.log(typeof 'ashley shelter');
+console.log(typeof false);
+console.log(typeof 2);
+const empty = null;
+console.log(empty);
+console.log(typeof empty);
+let nothing;
+console.log(nothing);
+console.log(typeof nothing);
