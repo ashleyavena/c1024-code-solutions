@@ -13,7 +13,7 @@ Answer the following questions in the provided markdown file before turning in t
   less than (<): returns true if left operand is less than right
 
 - What data type do comparison expressions evaluate to?
-  number data types
+  boolean data types
 
 - What is the purpose of an `if` statement?
   most simple, use if when you need to add some sort of conditional expression, followed by a code block to execute if that condition is true or not
@@ -33,7 +33,7 @@ the conditional expression will always evaluate to either a true or false
   logical NOT (!): returns false if operand is true and true if operand is false (reverse)
 
 - How do you compare two different expressions in the same condition?
-  by using comparison operators
+  by using logical operators
 
 - What is the purpose of a `switch` statement?
   useful for a collection of conditions/cases that need to be check against (could be don't technically with an else/if but switch is more succinct)
