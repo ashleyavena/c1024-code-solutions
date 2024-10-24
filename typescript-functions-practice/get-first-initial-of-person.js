@@ -1,9 +1,4 @@
-"use strict";
-const mickey = {
-    firstName: 'mickey',
-    lastName: 'mouse',
-};
+'use strict';
 function getFirstInitialOfPerson(person) {
-    return person.firstName[0];
+  return person.firstName[0];
 }
-console.log(getFirstInitialOfPerson(mickey));

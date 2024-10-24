@@ -1,10 +1,5 @@
-"use strict";
-const Harry = {
-    name: 'Harry Potter',
-    occupation: 'wizard',
-    birthPlace: 'England',
-};
+'use strict';
+/* exported getPropertyValue */
 function getPropertyValue(object, key) {
-    return object[key];
+  return object[key];
 }
-console.log(getPropertyValue(Harry, 'occupation'));

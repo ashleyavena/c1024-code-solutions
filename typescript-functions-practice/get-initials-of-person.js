@@ -1,9 +1,4 @@
-"use strict";
-const minnie = {
-    firstName: 'minnie',
-    lastName: 'mouse',
-};
+'use strict';
 function getInitialsOfPerson(person) {
-    return person.firstName[0] + person.lastName[0];
+  return person.firstName[0] + person.lastName[0];
 }
-console.log(getInitialsOfPerson(minnie));
