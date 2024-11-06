@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: beige;
+}
+
+/* dialog{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: beige;
+} */
+
+.circle-light {
+  background-color: yellow;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  box-shadow: 0 -5px 15px 15px rgb(132, 132, 16);
+}
+
+.circle-dark {
+  background-color: black;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  box-shadow: 0 -5px 15px 15px rgb(172, 30, 151);
+}
+
+.container-transition {
+  background-color: green;
+}
