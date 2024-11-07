@@ -1,0 +1,23 @@
+#container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+}
+
+span {
+  font-size: 80px;
+}
+
+
+span.green{
+  color: green;
+}
+
+span.red{
+  color:red
+}
+
+for each span, originally will be black
+then i need to apply a green color if the correct keydown is pressed
+if not apply a red color
