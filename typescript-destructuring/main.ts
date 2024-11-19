@@ -27,7 +27,7 @@ console.log(
   `The title of the book is ${bookName}, the author of the book is ${writer}, and the library id is ${bookNumber}`
 );
 
-const library = [
+const library: Book[] = [
   {
     title: 'The Road Ahead',
     author: 'Bill Gates',
