@@ -73,8 +73,6 @@ async function throwChained(): Promise<void> {
 //   .then(() => throwSeveral())
 //   .then(() => throwChained());
 
-(async (): Promise<void> => {
-  await throwOnce();
-  await throwSeveral();
-  await throwChained();
-})();
+await throwOnce();
+await throwSeveral();
+await throwChained();
