@@ -1,0 +1,500 @@
+  195  git switch main
+  196  clear
+  197  git status 
+  198  git branch css-three-column-layout 
+  199  git switch css-three-column-layout 
+  200  git add css-three-column-layout 
+  201  git commit -m "Completed css-three-column-layout"
+  202  git push origin css-three-column-layout 
+  203  git switch main
+  204  clear
+  205  git status
+  206  git pull origin main
+  207  git branch css-positioning 
+  208  git switch css-positioning 
+  209  git add css-positioning  
+  210  git commit -m "Completed css-positioning"
+  211  git push origin css-positioning  
+  212  git switch main
+  213  clear
+  214  git status
+  215  git branch css-cascade 
+  216  git switch css-cascade 
+  217  git add css-cascade 
+  218  git commit -m "Completed css-cascade"
+  219  git push origin css-cascade  
+  220  git switch main
+  221  git pull origin main
+  222  clear
+  223  git status
+  224  git pull origin main
+  225  git branch css-canvas-medical 
+  226  git switch css-canvas-medical 
+  227  git add css-canvas-medical
+  228  git commit -m "in progress css-canvas-medical"
+  229  git push origin css-canvas-medical
+  230  clear
+  231  git status
+  232  git add css-canvas-medical 
+  233  git commit -m "Completed css-canvas-medical"
+  234  git push origin css-canvas-medical 
+  235  git switch main
+  236  clear
+  237  git branch dom-querying 
+  238  git switchh dom-querying
+  239  git switch dom-querying
+  240  cd dom-querying 
+  241  npx tsc --watch
+  242  cd ..
+  243  git add dom-querying 
+  244  git commit -m "Completed dom-querying"
+  245  git push origin dom-querying 
+  246  git switch main
+  247  clear
+  248  git branch dom-events
+  249  git switch dom-events 
+  250  cd dom-events  
+  251  npx tsc --watch
+  252  cd ..
+  253  git add dom-events 
+  254  git commit -m "Completed dom-events"
+  255  git push origin dom-events 
+  256  clear
+  257  git switch main 
+  258  git branch dom-manipulation 
+  259  git switch dom-manipulation
+  260  cd dom-manipulation
+  261  npx tsc --watch
+  262  cd ..
+  263  git add dom-manipulation 
+  264  git commit -m "Completed dom-manipulation"
+  265  git push origin dom-manipulation 
+  266  git switch main
+  267  clear
+  268  git switch main
+  269  git pull origin main
+  270  clear
+  271  git branch dom-creation 
+  272  git switch dom-creation 
+  273  cd dom-creation 
+  274  npx tsc --watch
+  275  cd ..
+  276  git add dom-creation 
+  277  git commit -m "Completed dom-creation"
+  278  git push origin dom-creation 
+  279  git switch main
+  280  clear
+  281  git branch dom-event-delegation 
+  282  git switch dom-event-delegation
+  283  cd dom-event-delegation  
+  284  npx tsc --watch 
+  285  cd ..
+  286  git add dom-event-delegation 
+  287  git commit -m "Completed dom-event-delegation"
+  288  git push origin dom-event-delegation 
+  289  git switch main
+  290  git switch css-canvas-medical
+  291  git status
+  292  git switch main
+  293  clear
+  294  cd/workspaces
+  295  cd /workspaces
+  296  git clone git@github.com:ashleyavena/code-journal.git 
+  297  cd code-journal
+  298  npm install
+  299  /usr/bin/git -C "/workspaces/code-journal" -c "core.editor=code --wait --reuse-window" branch --delete issue-2-view-an-entry
+  300  git status
+  301  git branch --list
+  302  git switch main
+  303  cleawr
+  304  clear
+  305  git switch main
+  306  git pull origin main
+  307  git branch issue-2-view-an-entry
+  308  git switch issue-2-view-an-entry 
+  309  git status 
+  310  clear
+  311  git switch main
+  312  /usr/bin/git -C "/workspaces/code-journal" -c "core.editor=code --wait --reuse-window" branch --delete issue-2-view-an-entry
+  313  git switch main
+  314  clear
+  315  git status
+  316  git branch issue-2-view-an-entry
+  317  git switch issue-2-view-an-entry 
+  318  git status
+  319  clear
+  320  git pull origin main
+  321  git add .
+  322  git commit -m "silly stuff" 
+  323  git pull origin main
+  324  git log
+  325  git switch main
+  326  git branch -D issue-2-view-an-entry 
+  327  git pull origin main
+  328  git branch issue-2-user-can-view-entries
+  329  git switch issue-2-user-can-view-entries 
+  330  clear
+  331  git status
+  332  git add . 
+  333  git commit -m "add empty ul, create dummy li, check responsiveness on mobile & desktop"
+  334  git push origin issue-2-user-can-view-entries 
+  335  clear
+  336  npx tsc --watch 
+  337  git add .
+  338  git commit -m "define function renderEntry and make DOM tree"
+  339  clear
+  340  npx tsc --watch 
+  341  git add .
+  342  git commit -m "testing" 
+  343  clear
+  344  npx tsc --watch 
+  345  git add .
+  346  git commit -m "define function renderEntry and create DOM tree for single entry" 
+  347  clear
+  348  git add . 
+  349  git commit -m "define function renderEntry and create DOM tree for single entry" --no-verify 
+  350  git push origin issue-2-user-can-view-entries 
+  351  clear
+  352  npx tsc --watch 
+  353  git add . 
+  354  git commit -m "event lister on document to loop thru data.entries and append DOM tree" 
+  355  git push origin issue-2-user-can-view-entries 
+  356  clear
+  357  npx tsc --watch 
+  358  git add .
+  359  git commit -m "DOM tree structure updated"
+  360  clear
+  361  git add .
+  362  git commit -m "updated DOM tree #2"
+  363  clear
+  364  git add . 
+  365  git commit -m "updated DOM tree #2"
+  366  git push origin issue-2-user-can-view-entries --no-verify
+  367  clear
+  368  npx tsc --watch 
+  369  git add .
+  370  git commit -m "create function toggleNoEntries" 
+  371  clear
+  372  git add . 
+  373  git commit -m "create function toggleNoEntries" 
+  374  git push origin issue-2-user-can-view-entries 
+  375  clear
+  376  npx tsc --watch
+  377  git commit -m "create function for viewSwap"
+  378  git add .
+  379  git commit -m "create function for viewSwap"
+  380  git add .
+  381  git commit -m "create function for viewSwap"
+  382  git push origin issue-2-user-can-view-entries 
+  383  clear
+  384  npx tsc --watch
+  385  git add .
+  386  git commit -m "add anchor for enttries and event handler for viewSwap"
+  387  git push origin issue-2-user-can-view-entries 
+  388  clear
+  389  npx tsc --watch
+  390  git add .
+  391  git commit -m "add anchor to entries view and styled as NEW button"
+  392  git push origin issue-2-user-can-view-entries 
+  393  clear
+  394  npx tsc --watch
+  395  git add .
+  396  git committ -m "update submit callback with 4 additions #2"
+  397  git commit -m "update submit callback with 4 additions #2"
+  398  git push origin issue-2-user-can-view-entries 
+  399  clear
+  400  npx tsc --watch
+  401  git add .
+  402  git commit -m "update DOMContentLoaded for viewSwap and toggleEntries #2"
+  403  git push origin issue-2-user-can-view-entries 
+  404  clear
+  405  npx tsc --watch
+  406  git add .
+  407  git commit -m "fixed all errors perhaps #2"
+  408  git push origin issue-2-user-can-view-entries 
+  409  clear
+  410  npx tsc --watch
+  411  git add .
+  412  git commit -m "corrections completed hopefully #2"
+  413  git push origin issue-2-user-can-view-entries 
+  414  clear
+  415  git switch main
+  416  git pull origin main
+  417  git branch issue-3-edit-an-entry
+  418  git switch issue-3-edit-an-entry 
+  419  clear
+  420  npx tsc --watch
+  421  git add .
+  422  git commit -m "update renderEntry with fontpencil and set li attribute #3"
+  423  git push origin issue-3-edit-an-entry 
+  424  clear
+  425  npx tsc --watch
+  426  git add .
+  427  git commit -m "ul eventlistener with 4 componenets #3"
+  428  git push origin issue-3-edit-an-entry 
+  429  clear
+  430  npx tsc --watch
+  431  git add .
+  432  git commit -m "pre-populated the form edit #3"
+  433  git push origin issue-3-edit-an-entry 
+  434  clear
+  435  npx tsc --watch
+  436  git add . 
+  437  git commit -m "Update the entry form's submit handler to do the following:maybe? #3"
+  438  git push origin issue-3-edit-an-entry 
+  439  clear
+  440  git switch main
+  441  git add . 
+  442  git commit -m "save commits #3"
+  443  git add .
+  444  git commit -m "in progress #3"
+  445  git push origin issue-3-edit-an-entry 
+  446  clear
+  447  git switch main
+  448  cd workspace 
+  449  cd workspaces 
+  450  cd ..
+  451  git clone git@github.com:Learning-Fuze/week-planner-instructions.git 
+  452  ls
+  453  rm -rf week-planner-instructions/
+  454  ls
+  455  git clone git@github.com:mikejglenn/week-planner.git 
+  456  cd week-planner
+  457  npm install
+  458  code . 
+  459  git pull origin main 
+  460  git add .
+  461  git commit -m "added headers select and button" 
+  462  git push origin main 
+  463  clear
+  464  git pull origin main  
+  465  git pull origin main 
+  466  git pull origin main 
+  467  clear
+  468  npx tsc --watch
+  469  git add .
+  470  git commit -m "dialog modal typescript" 
+  471  git push origin main 
+  472  clear
+  473  git pull origin main
+  474  npx tsc --watch
+  475  git add .
+  476  git commit -m "fixed idiocracy slightly" 
+  477  git push origin main 
+  478  clear
+  479  git pull origin main
+  480  npx tsc --watch
+  481  git add .
+  482  git commit -m "we tried" 
+  483  clear
+  484  git add .
+  485  git commit -m "we tried" --no-verify
+  486  git push origin main
+  487  clear
+  488  cd ..
+  489  npx tsc --watch
+  490  git switch issue-3-edit-an-entry 
+  491  git switch issue-3-edit-an-entry 
+  492  npx tsc --watch
+  493  git add .
+  494  git commit -m "completed issue 3 i hope #3" 
+  495  git push origin issue-3-edit-an-entry 
+  496  git switch main
+  497  git pull origin main
+  498  git branch issue-4-delete-an-entry
+  499  git switch issue-4-delete-an-entry 
+  500  clear
+  501  git pull origin main
+  502  git branch practice-interview-challenge 
+  503  git switch practice-interview-challenge 
+  504  clear
+  505  cd practice-interview-challenge 
+  506  npx tsc --watch
+  507  cd ..
+  508  clear
+  509  git add practice-interview-challenge 
+  510  git commit -m "in progress practice-interview-challenge" --no-verify
+  511  git push origin practice-interview-challenge cleawr
+  512  clear
+  513  git switch main
+  514  git status
+  515  clear 
+  516  git branch typescript-timers 
+  517  git switch typescript-timers 
+  518  clear
+  519  cd typescript-timers
+  520  npx tsc --watch 
+  521  cd ..
+  522  git add typescript-timers
+  523  git commit -m "completed typescript-timers"
+  524  git push origin typescript-timers
+  525  clear
+  526  git switch main
+  527  git switch main
+  528  git switch practice-interview-challenge 
+  529  cd practice-interview-challenge 
+  530  npx tsc --watch
+  531  cd ..
+  532  git add practice-interview-challenge 
+  533  git commit -m "corrected practice-interview-challenge" 
+  534  clear
+  535  cd practice-interview-challenge 
+  536  npx tsc --watch 
+  537  cd .. 
+  538  git add practice-interview-challenge
+  539  git commit -m "corrected practice-interview-challenge"
+  540  git push origin practice-interview-challenge
+  541  clear
+  542  git switch main 
+  543  git branch typescript-carousel 
+  544  git switch typescript-carousel 
+  545  cd typescript-carousel 
+  546  npx tsc --watch 
+  547  cd ..
+  548  git commit -m "still in progress carousel"
+  549  git add typescript-carousel 
+  550  git commit -m "still in progress carousel"
+  551  git push origin typescript-carousel 
+  552  clear
+  553  git switch main
+  554  git pull origin main
+  555  clear
+  556  git branch typescript-destructuring 
+  557  git switch typescript-destructuring 
+  558  git status
+  559  clear
+  560  cd typescript-destructuring 
+  561  npx tsc --watch 
+  562  cd .
+  563  git add typescript-destructuring
+  564  git commit -m "completed typescript-destructuring" 
+  565  clear
+  566  cd .. 
+  567  git add typescript-destructuring 
+  568  git commit -m "completed typescript-destructuring" 
+  569  git push origin typescript-destructuring 
+  570  clear
+  571  cd typescript-destructuring
+  572  npx tsx --watch 
+  573  git status
+  574  clear
+  575  npx tsx --watch 
+  576  npx tsc --watch 
+  577  cd ..
+  578  git add typescript-destructuring 
+  579  git commit -m "type change" 
+  580  git push origin typescript-destructuring 
+  581  clear
+  582  cd ..
+  583  cd c1024-code-solutions 
+  584  git status
+  585  clear
+  586  git switch main
+  587  git pull origin main 
+  588  clear
+  589  git status
+  590  git branch typescript-operators 
+  591  git switch typescript-operators 
+  592  clear
+  593  cd typescript-operators
+  594  npx tsc --watch 
+  595  cd ..
+  596  git add typescript-operators 
+  597  git commit -m "completed typescript-operators"
+  598  git push origin typescript-operators 
+  599  clear
+  600  cd typescript-operators 
+  601  npx tsc --watch 
+  602  cd ..
+  603  git add typescript-operators 
+  604  git commit -m "completed typescript-operators"
+  605  git push origin typescript-operators 
+  606  clear
+  607  git switch main
+  608  git switch main
+  609  clear
+  610  git branch array-methods 
+  611  git switch array-methods 
+  612  cd array-methods 
+  613  npx tsc --watch
+  614  cd ..
+  615  git add array-methods 
+  616  git commit -m "completed array-methods"
+  617  git push origin array-methods 
+  618  git clear
+  619  clear
+  620  git switch main
+  621  git branch command-line-basics 
+  622  git switch command-line-basics
+  623  cd command-line-basics 
+  624  git status
+  625  man man 
+  626  man man 
+  627  man cat
+  628  clear
+  629  cat laziness.txt
+  630  cat impatience.txt
+  631  cat hubris.txt
+  632  clear
+  633  cat laziness.txt impatience.txt hubris.txt > three-virtues.txt
+  634  cat three-virtues.txt
+  635  man ls
+  636  ls 
+  637  ls -a
+  638  ls -F
+  639  ls lfz-staff/
+  640  ls lfz-staff/ -a -F
+  641  ls lfz-staff/contents.txt
+  642  clear
+  643  ls -aF lfz-staff > lfz-staff/contents.txt
+  644  cat lfz-staff/contents.txt
+  645  man pwd
+  646  pwd > i-was-here.txt
+  647  ls 
+  648  cat i-was-here.txt
+  649  clear
+  650  echo
+  651  man echo
+  652  echo "Hello, World!"
+  653  echo "Hello, World!" > hello.txt
+  654  ls 
+  655  cat hello.txt
+  656  clera
+  657  clear
+  658  man touch 
+  659  touch tag-youre-it.txt
+  660  touch snoot/boop.txt
+  661  ls
+  662  ls snoot
+  663  man mkdir
+  664  man mkdir
+  665  mkdir -p parent
+  666  ls 
+  667  mkdir -p parent/child/grandchild
+  668  touch .gitkeep parent/child/grandchild
+  669  ls -a
+  670  clear
+  671  man mv
+  672  man mv
+  673  mv pokiemans pokemon
+  674  ls
+  675  clear
+  676  man rm
+  677  man rm
+  678  rm lol.txt
+  679  ls
+  680  ls -a
+  681  rm -r kill-me/
+  682  ls
+  683  clear
+  684  man cp
+  685  ls 
+  686  cp and-then.txt no-and-then.txt
+  687  ls 
+  688  cat and-then.txt no-and-then.txt
+  689  cat and-then.txt
+  690  cat no-and-then.txt
+  691  clear
+  692  man history 
+  693  history
+  694  history > command-history.txt
