@@ -7,7 +7,7 @@ values.forEach((values) => {
 console.log('serparation');
 
 values.forEach((_, index) => {
-  const reverse = values.length - 1 - index;
+  const reverse = values[values.length - 1 - index];
   console.log(reverse);
 });
 
