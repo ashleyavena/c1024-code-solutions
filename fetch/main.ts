@@ -38,3 +38,19 @@ async function fetchPokemon(): Promise<void> {
   }
 }
 fetchPokemon();
+
+// const apiUrl = 'https://ghibliapi.vercel.app';
+
+async function fetchApi(): Promise<void> {
+  try {
+    const response = await fetch('https://ghibliapi.vercel.app/films');
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log(data[0]);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+fetchApi();
