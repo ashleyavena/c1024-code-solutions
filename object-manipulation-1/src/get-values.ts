@@ -7,6 +7,14 @@ interface Object {
   longitude: number;
 }
 
+function getValues(object: object): any {
+  const array = [];
+  for (const value in object) {
+    array.push(object[value]);
+  }
+  return array;
+}
+
 // function getValues(object: Object[], key: string[]): any[] {
 //   const gotValues = [];
 //   for (const prop in object) {
@@ -38,6 +46,6 @@ interface Object {
 // getValue(learningFuze, 'latitude'); // -> 33.6349
 // getValue(learningFuze, 'longitude'); // -> 117.7405
 
-// const tim = { name: 'Tim', language: 'JavaScript' };
-// getValue(tim, 'age'); // -> undefined
-// getValue(tim, 'yearsExperience'); // -> undefined
+const tim = { name: 'Tim', language: 'JavaScript' };
+getValue(tim, 'age'); // -> undefined
+getValue(tim, 'yearsExperience'); // -> undefined
