@@ -1,7 +1,7 @@
-type DescriptionProps = {
+type Props = {
   text: string;
 };
 
-export function Description({ text }: DescriptionProps) {
+export function Description({ text }: Props) {
   return <p>{text}</p>;
 }
