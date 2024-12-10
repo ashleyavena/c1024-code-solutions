@@ -6,7 +6,7 @@ type Props = {
 export function Caption({ chamomiles }: Props) {
   const [index, setIndex] = useState(0);
   function handleClick() {
-    if (index >= chamomiles.length) {
+    if (index >= chamomiles.length - 1) {
       setIndex(0);
     } else {
       setIndex(index + 1);
