@@ -38,9 +38,5 @@ export function PokemonList({ pokedex }: Props) {
     <li key={pokemon.number}>{pokemon.name}</li>
   ));
 
-  return (
-    <>
-      <ul>{nameItems}</ul>
-    </>
-  );
+  return <ul>{nameItems}</ul>;
 }
