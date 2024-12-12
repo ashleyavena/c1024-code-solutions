@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars -- Remove me */
 import { useState } from 'react';
 import { Pokemon, PokemonList } from './PokemonList';
+import { Props } from './PokemonList';
 
 export function App() {
   const [pokedex, setPokedex] = useState([
