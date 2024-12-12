@@ -15,6 +15,10 @@ export function ValidatedInput() {
   } else if (password.length > 8) {
     message = '';
     isCorrect = true;
+  } else if (!/\d/.test(password)) {
+    message = 'Number required';
+  } else if (!/ [A-Z]/.test(password)) {
+    message = 'uppercase letter required';
   } else {
     isCorrect = true;
   }
@@ -38,7 +42,7 @@ export function ValidatedInput() {
             )}
           </span>
         </label>
-        <div className="validation-message">{message}</div>
+        <div className="validation-message">{message}&nbsp;</div>
       </div>
     </>
   );
