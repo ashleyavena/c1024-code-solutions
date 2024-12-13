@@ -3,7 +3,7 @@ import { FormEvent, useState } from 'react';
 import './App';
 
 export function RegistrationFormControlled() {
-  const [username, setUserName] = useState('');
+  const [username, setUserName] = useState<string>(); // might be undefined
   const [password, setPassword] = useState('');
 
   function handleSubmit(event: FormEvent) {
@@ -18,7 +18,7 @@ export function RegistrationFormControlled() {
         <label>
           Username:
           <input
-            value={username}
+            value={username ?? ''} // checks for null or undefined
             onChange={(e) => setUserName(e.target.value)}
             className="username"></input>
         </label>
