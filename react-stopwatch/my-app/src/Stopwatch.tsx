@@ -3,26 +3,26 @@ import { FaPlay, FaPause } from 'react-icons/fa';
 import { useState } from 'react';
 
 export function Stopwatch() {
-  const [intervalId, setIntervalId] = useState<NodeJS.Timeout>();
+  const [intervalId, setIntervalId] = useState<NodeJS.Timeout>(); // intervalID will tell us if it's running, if it's not it's undefined
   const [seconds, setSeconds] = useState(0);
+  // const isRunning= !!intervalId //turns into boolean isRunning is False here
 
   function handlePlay() {
     function callback() {
-      setSeconds((seconds) => seconds + 1);
+      setSeconds((prev) => prev + 1);
     }
     const id = setInterval(callback, 1000);
     setIntervalId(id);
   }
 
   function handlePause() {
-    clearInterval(intervalId);
+    clearInterval(intervalId); // clear interval clears it from the event queue so the interval stops running
     setIntervalId(undefined);
   }
 
   function handleReset() {
     if (!intervalId) {
       setSeconds(0);
-      setIntervalId(undefined);
     }
   }
 
