@@ -2,11 +2,6 @@ import { FormEvent, useState } from 'react';
 
 import './App';
 
-// type FormData = {
-//   username: string;
-//   password: string;
-// };
-
 export function RegistrationFormControlled() {
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
@@ -14,11 +9,7 @@ export function RegistrationFormControlled() {
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
 
-    const form = event.currentTarget as HTMLFormElement;
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData);
-
-    console.log(data, username, password);
+    console.log({ username, password });
   }
 
   return (

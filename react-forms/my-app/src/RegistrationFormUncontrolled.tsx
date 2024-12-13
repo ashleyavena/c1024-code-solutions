@@ -1,11 +1,6 @@
 import { FormEvent } from 'react';
 import './App';
 
-// type FormData = {
-//   username: string;
-//   password: string;
-// };
-
 export function RegistrationFormUncontrolled() {
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
