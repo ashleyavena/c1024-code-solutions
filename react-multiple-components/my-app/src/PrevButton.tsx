@@ -1,12 +1,8 @@
-type Props = {
-  animals: string;
-};
-
-export function PrevButton({ animal }: Props) {
+export function PrevButton({ animals }: Props) {
   return (
     <>
       <div>
-        <button className="prevButton">Prev</button>
+        <button className="prevButton">Prev{animals}</button>
       </div>
     </>
   );

@@ -14,7 +14,7 @@ const items = [
 function App() {
   return (
     <>
-      <RotatingBanner animals={items} />
+      <RotatingBanner items={items} />
     </>
   );
 }

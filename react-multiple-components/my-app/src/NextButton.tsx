@@ -1,8 +1,4 @@
-type Props = {
-  animals: string;
-};
-
-export function NextButton({ animals }: Props) {
+export function NextButton() {
   return (
     <>
       <div>
