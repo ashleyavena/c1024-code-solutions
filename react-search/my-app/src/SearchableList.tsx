@@ -10,14 +10,10 @@ type Props = {
 export function SearchableList({ quotes }: Props) {
   const [inputValue, setInputValue] = useState('');
 
-  function handleChange(value: string) {
-    setInputValue(value);
-  }
-
   return (
     <>
       <div className="searchable-list">
-        <SearchBar onChange={handleChange} />
+        <SearchBar value={inputValue} onChange={setInputValue} />
         <ListOfItems quotes={quotes} input={inputValue} />
       </div>
     </>

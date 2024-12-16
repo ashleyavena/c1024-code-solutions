@@ -5,7 +5,9 @@ type Props = {
 
 export function ListOfItems({ quotes, input }: Props) {
   function renderResults() {
-    return quotes.filter((Q) => Q.toLowerCase().includes(input.toLowerCase()));
+    return quotes.filter((Q) =>
+      Q.toLocaleLowerCase().includes(input.toLocaleLowerCase())
+    );
   }
   const results = renderResults();
 
