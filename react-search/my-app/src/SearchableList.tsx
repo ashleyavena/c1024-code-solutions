@@ -17,7 +17,7 @@ export function SearchableList({ quotes }: Props) {
   return (
     <>
       <div className="searchable-list">
-        <SearchBar input={inputValue} onChange={handleChange} />
+        <SearchBar onChange={handleChange} />
         <ListOfItems quotes={quotes} input={inputValue} />
       </div>
     </>

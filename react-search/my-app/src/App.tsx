@@ -19,10 +19,8 @@ const quotes = [
 function App() {
   return (
     <>
-      <div className="app">
-        <h1>Search HP Quotes</h1>
-        <SearchableList quotes={quotes} />
-      </div>
+      <h1>Search HP Quotes</h1>
+      <SearchableList quotes={quotes} />
     </>
   );
 }

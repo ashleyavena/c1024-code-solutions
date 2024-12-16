@@ -2,11 +2,10 @@ import './SearchableList';
 import './App';
 
 type Props = {
-  input: string;
   onChange: (value: string) => void;
 };
 
-export function SearchBar({ input, onChange }: Props) {
+export function SearchBar({ onChange }: Props) {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
@@ -15,13 +14,10 @@ export function SearchBar({ input, onChange }: Props) {
       <label className="search-bar">
         <input
           type="text"
-          value={input}
           onChange={handleChange}
           placeholder="search..."></input>
-        {/* <img alt="search icon" className="search-icon" /> */}
+        <img src="search-solid.svg" className="search-glass" />
       </label>
     </>
   );
 }
-
-// useState [index, setIndex] Loop through items[]

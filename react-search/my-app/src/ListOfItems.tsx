@@ -5,7 +5,7 @@ type Props = {
 
 export function ListOfItems({ quotes, input }: Props) {
   function renderResults() {
-    return quotes.filter((q) => q.toLowerCase().includes(input.toLowerCase()));
+    return quotes.filter((Q) => Q.toLowerCase().includes(input.toLowerCase()));
   }
   const results = renderResults();
 
@@ -19,13 +19,9 @@ export function ListOfItems({ quotes, input }: Props) {
             </div>
           ))
         ) : (
-          <div className="no-results">No results found</div>
+          <div className="no-results">No items match the filter.</div>
         )}
       </div>
     </>
   );
 }
-
-// filter prop?
-// useState [index, setIndex] Loop through items[]
-// if (filter !== items[any index]){console.log("no items found")}
