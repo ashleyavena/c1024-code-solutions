@@ -2,7 +2,7 @@ import './App.css';
 
 import { RotatingBanner } from './RotatingBanner';
 
-const items = [
+const itemz = [
   'Aardvark',
   'Bengal',
   'Caterpillar',
@@ -14,7 +14,7 @@ const items = [
 function App() {
   return (
     <>
-      <RotatingBanner items={items} />
+      <RotatingBanner items={itemz} />
     </>
   );
 }

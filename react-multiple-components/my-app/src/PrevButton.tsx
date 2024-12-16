@@ -1,9 +1,13 @@
-export function PrevButton({ animals }: Props) {
+type Props = {
+  onClick: () => void;
+};
+
+export function PrevButton({ onClick }: Props) {
   return (
     <>
-      <div>
-        <button className="prevButton">Prev{animals}</button>
-      </div>
+      <button onClick={onClick} className="prevButton">
+        Prev
+      </button>
     </>
   );
 }

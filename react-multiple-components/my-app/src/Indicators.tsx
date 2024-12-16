@@ -1,12 +1,21 @@
 type Props = {
-  animals: string[];
+  count: number;
+  current: number;
+  onClick: (i: number) => void;
 };
 
-export function Indicators({ animals }: Props) {
+export function Indicators({ count, current, onClick }: Props) {
   function renderButtons() {
     const buttons = [];
-    for (let i = 0; i < animals.length; i++) {
-      buttons.push(<button>{i}</button>);
+    for (let i = 0; i < count; i++) {
+      buttons.push(
+        <button
+          key={i}
+          onClick={() => onClick(i)}
+          style={{ backgroundColor: i === current ? 'lightblue' : 'grey' }}>
+          {i}
+        </button>
+      );
     }
     return buttons;
   }
@@ -14,7 +23,6 @@ export function Indicators({ animals }: Props) {
   return (
     <>
       <div>{renderButtons()}</div>
-      onClick={}
     </>
   );
 }
