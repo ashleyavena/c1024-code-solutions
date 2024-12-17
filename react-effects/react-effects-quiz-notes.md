@@ -15,37 +15,44 @@ Answer the following questions in the provided markdown file before turning in t
   DONT USE: when side effect logic can be computed in render function (derived state, simple calcs, etc)
 
 - When do Effects run?
-  by default, after every render (including initial + updates)
+  initial (when component mounts) + updates
   you can control when effects run with DEPENDENCIES
 
 - What function is used to declare an Effect?
+  useEffect is a hook
   useEffect(callback, dependencies)
+  callback can be called the 'effect function'
 
 - What are Effect dependencies and how do you declare them?
+  Dependency: anything you effect uses that is declared outside the function itself
   they are values that the Effect depends on, declared in the 2nd argument of useEffect as an array[]
   EX: useEffect(() => {
   // Effect logic
   }, [dependency1, dependency2]);
 
 - Why would you want to clean up from an Effect?
-  to avoid memory leaks, remove event listeners, cancel network requests, clean up subscriptions when a component unmounts or dependencies change
+  to avoid memory leaks (allocate memory and want to let it go) (doesnt leak out it accumulates )
+  remove event listeners, cancel network requests, clean up subscriptions when a component unmounts or dependencies change, start an interval (timer) and want to stop it
 
 - How do you clean up from an Effect?
   return a cleanup function from the useEffect() callback
 
 EX:
 useEffect(() => {
+setInterval
 const handleResize = () => console.log(window.innerWidth);
 window.addEventListener('resize', handleResize);
 
 // Cleanup function
 return () => {
+clearInterval
 window.removeEventListener('resize', handleResize);
 };
 }, []);
 
 - When does the cleanup function run?
-  before the next Effect runs (if dependencies change), and when the component is unmounted from the DOn
+  before the next Effect runs (if dependencies change), and when the component is unmounted from the DOM
+  effect is balanced with a cleanup
 
 ## Notes
 

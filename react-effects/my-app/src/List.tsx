@@ -12,8 +12,9 @@ export function List() {
       try {
         const response = await readItems();
         setItems(response);
-      } catch (error) {
-        setError(error);
+      } catch (err) {
+        setError(err);
+        console.log(err);
       } finally {
         setIsLoading(false);
       }
