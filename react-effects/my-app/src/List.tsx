@@ -7,19 +7,11 @@ export function List() {
   const [items, setItems] = useState<Item[]>([]);
   const [error, setError] = useState<unknown>();
 
-  // Your code here:
-  //  - When the component mounts:
-  //    - Read the items using `readItems` and update state so the list displays
-  //    - Handle errors from `readItems`
-
   useEffect(() => {
     async function fetchData() {
       try {
-        const data = await readItems();
-        setItems(data);
-        if (!setIsLoading) {
-          throw new Error('error message');
-        }
+        const response = await readItems();
+        setItems(response);
       } catch (error) {
         setError(error);
       } finally {
