@@ -22,7 +22,7 @@ export function Dots({ onClick, count, current }: Props) {
   }
   return (
     <>
-      <div>{renderDots()}</div>
+      <div className="my-dots">{renderDots()}</div>
     </>
   );
 }

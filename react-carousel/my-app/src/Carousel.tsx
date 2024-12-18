@@ -21,17 +21,18 @@ export function Carousel({ images }: Props) {
 
   return (
     <>
-      <PrevButton
-        onClick={() =>
-          setCurrentSlide((currentSlide - 1 + images.length) % images.length)
-        }
-      />
-
-      <Picture image={images[currentSlide]} />
-      <NextButton
-        onClick={() => setCurrentSlide((currentSlide + 1) % images.length)}
-      />
-      <div>
+      <div className="carousel-container">
+        <PrevButton
+          onClick={() =>
+            setCurrentSlide((currentSlide - 1 + images.length) % images.length)
+          }
+        />
+        <Picture image={images[currentSlide]} />
+        <NextButton
+          onClick={() => setCurrentSlide((currentSlide + 1) % images.length)}
+        />
+      </div>
+      <div className="dots-container">
         <Dots
           onClick={(e) => setCurrentSlide(e)}
           count={images.length}

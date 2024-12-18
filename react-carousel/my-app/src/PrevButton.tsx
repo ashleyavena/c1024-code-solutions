@@ -7,7 +7,7 @@ type Props = {
 export function PrevButton({ onClick }: Props) {
   return (
     <>
-      <FaAngleLeft onClick={onClick} />
+      <FaAngleLeft className="p-button" onClick={onClick} />
     </>
   );
 }

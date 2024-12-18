@@ -7,7 +7,7 @@ type Props = {
 export function Picture({ image }: Props) {
   return (
     <>
-      <img src={image.src} alt={image.alt} />
+      <img className="rotating-images" src={image.src} alt={image.alt} />
     </>
   );
 }
