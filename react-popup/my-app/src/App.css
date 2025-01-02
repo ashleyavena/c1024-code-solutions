@@ -20,3 +20,23 @@
 .read-the-docs {
   color: #888;
 }
+
+.backdrop-shade {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0);
+  pointer-events: all;
+}
+
+.popupStyle {
+  list-style-type: none;
+  transform: translateX(-50%);
+  border: 2px solid black;
+  padding: 10px;
+  width: 200px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  color: black;
+}

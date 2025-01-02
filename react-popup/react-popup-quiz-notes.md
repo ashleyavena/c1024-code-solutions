@@ -12,6 +12,8 @@ Answer the following questions in the provided markdown file before turning in t
 
 its gets rendered into a DOM node outside the current component's DOM hierarchy, typically mounted in 'document.body'
 
+\*\*\* renders top to bottom, and back to front
+
 EX:
 import { createPortal } from 'react-dom';
 
@@ -29,8 +31,10 @@ document.body
 
 1. Overlay Content:
    -Create modals, tooltips, dropdowns, or popups that need to appear on top of the rest of the app.
+
 2. Escape Parent Styling:
    -Avoid being affected by CSS overflow or positioning issues in parent components.
+
 3. Global Elements:
    -Add notifications, alerts, or floating menus that need to be outside the normal DOM hierarchy for layout purposes.
 
