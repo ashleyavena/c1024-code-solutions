@@ -5,8 +5,8 @@ type Props = {
 
 export function ListOfItems({ quotes, input }: Props) {
   function renderResults() {
-    return quotes.filter((Q) =>
-      Q.toLocaleLowerCase().includes(input.toLocaleLowerCase())
+    return quotes.filter((q) =>
+      q.toLocaleLowerCase().includes(input.toLocaleLowerCase())
     );
   }
   const results = renderResults();
