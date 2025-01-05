@@ -5,11 +5,7 @@ function truncate(length, string) {
     return '...';
   }
   if (string.length <= length) {
-    return string;
+    return string + '...';
   }
-  let newString = '';
-  for (let i = 0; i < length; i++) {
-    newString += string[i];
-  }
-  return newString + '...';
+  return string.slice(0, length) + '...';
 }
