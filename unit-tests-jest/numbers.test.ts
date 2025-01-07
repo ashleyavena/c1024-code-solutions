@@ -6,6 +6,22 @@ test('even numbers', () => {
   expect(result).toEqual([4, 10, 0]);
 });
 
+describe('even numbers', () => {
+  it('returns the even numbers', () => {
+    // Arrange
+    const input = [1, 4, 5, 10, 0];
+    // Act
+    const result = evenNumbers(input);
+    // Assert
+    expect(result).toEqual([4, 10, 0]);
+  });
+  it('works with an empty array', () => {
+    const input = [1, 5, 9];
+    const result = evenNumbers(input);
+    expect(result).toEqual([]);
+  });
+});
+
 test('even numbers empty array', () => {
   const numbers = [1, 5, 9];
   const result = evenNumbers(numbers);
@@ -29,6 +45,7 @@ test('divide by', () => {
   const divisor = 3;
   const result = divideBy(numbers, divisor);
   expect(result).toEqual([1, 2, 3]);
+  expect(result).not.toBe(numbers);
 });
 
 test('multiply by', () => {
@@ -41,6 +58,6 @@ test('multiply by', () => {
 test('multiplyBy should handle objects with no numeric values', () => {
   const value = { a: 'hello', b: true };
   const multiplier = 3;
-  const output = multiplyBy(value, multiplier);
-  expect(output).toEqual({ a: 'hello', b: true });
+  const result = multiplyBy(value, multiplier);
+  expect(result).toEqual({ a: 'hello', b: true });
 });

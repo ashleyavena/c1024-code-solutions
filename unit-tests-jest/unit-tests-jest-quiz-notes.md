@@ -18,7 +18,7 @@ avoid when creating integration tests that cross system borders & touch database
 
 - What is Jest? What are some other popular JavaScript unit testing frameworks?
   Jest: Javascript testing framework created by facebook
-  zero configuration, snapshot testing,
+  NUnit, Mocha, Jasmine
 
 ## Notes
 

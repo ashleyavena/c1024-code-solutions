@@ -28,9 +28,8 @@ export function multiplyBy(
   obj: Record<string, unknown>,
   multiplier: number
 ): Record<string, unknown> {
-  const result: Record<string, unknown> = {};
   Object.entries(obj).forEach(([key, value]) => {
-    result[key] = typeof value === 'number' ? value * multiplier : value;
+    obj[key] = typeof value === 'number' ? value * multiplier : value;
   });
-  return result;
+  return obj;
 }
