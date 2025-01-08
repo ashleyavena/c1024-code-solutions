@@ -9,21 +9,18 @@ export function smallest(bst: BinarySearchTree): number {
   return smallestRecursive(bst.root);
 }
 
+/** non-recursive solution */
 function smallestRecursive(node: TreeNode | undefined): number {
-  if (!node) return -Infinity;
+  if (!node) return Infinity;
   while (node.left) {
     node = node.left;
   }
   return node.value;
 }
 
+/** recursive solution */
 // function smallestRecursive(node: TreeNode | undefined): number {
-//   if (!node) return -Infinity;
-//   if (!node.left) return node.value;
-//   if (!node.right) return node.value;
-//   return Math.min(
-//     node.value,
-//     smallestRecursive(node.left),
-//     smallestRecursive(node.right)
-//   );
+//   if (!node) return Infinity;
+//   const left = smallestRecursive(node.left);
+//   return Math.min(node.value, left);
 // }

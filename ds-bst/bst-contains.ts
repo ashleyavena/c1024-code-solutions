@@ -9,11 +9,8 @@ export function contains(bst: BinarySearchTree, value: number): boolean {
 
 function containsRecursive(node: TreeNode | undefined, value: number): boolean {
   if (!node) return false;
-  if (node.value === value) {
-    return true;
-  } else if (value < node.value) {
-    return containsRecursive(node.left, value);
-  } else {
-    return containsRecursive(node.right, value);
-  }
+  if (node.value === value) return true;
+  if (containsRecursive(node.left, value)) return true;
+  if (containsRecursive(node.right, value)) return true;
+  return false;
 }

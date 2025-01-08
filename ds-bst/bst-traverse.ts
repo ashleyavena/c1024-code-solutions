@@ -9,8 +9,9 @@ export function traverse(bst: BinarySearchTree): number[] {
 
 function traverseRecursive(node: TreeNode | undefined): number[] {
   if (!node) return [];
-  const leftValues = traverseRecursive(node.left);
-  const rightValues = traverseRecursive(node.right);
-
-  return [...leftValues, node.value, ...rightValues];
+  return [
+    ...traverseRecursive(node.left),
+    node.value,
+    ...traverseRecursive(node.right),
+  ];
 }

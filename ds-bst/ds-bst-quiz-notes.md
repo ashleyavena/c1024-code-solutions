@@ -8,7 +8,8 @@ Answer the following questions in the provided markdown file before turning in t
   data structure tree, with rules that allow for quick search and retrieval
   each node has at most 2 children, with orderable values
   all values to left of node are less than parent and to right greater than
-  the binary search algorithm is recursive: the search function calls itself
+  the binary search algorithm is
+  recursive: the search function calls itself
 
 - What are some examples of when you would use a Binary Search Tree?
   elements can be easily retrieved in sorted order, unlike Lists/Hash Tables
@@ -23,7 +24,7 @@ Answer the following questions in the provided markdown file before turning in t
 - How do you add an element into a Binary Search Tree? What is its time complexity?
   assign the new value to the index
   list[index]= new_value
-  time complexity: O(n) in a balanced BST
+  time complexity: O(n) in a balanced BST logmarithmic
 
 - How do you remove an element from a Binary Search Tree? What is its time complexity?
   Leaf Node (no children) remove it directly
