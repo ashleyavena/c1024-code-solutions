@@ -13,10 +13,10 @@ export class PriorityQueue<T = unknown> {
    */
   enqueue(item: T, priority: number): void {
     const index = this.nodes.findIndex((n) => n.priority <= priority);
-    if (index === -1) {
-      this.nodes.push({ data: item, priority });
-    } else {
+    if (index >= 0) {
       this.nodes.splice(index, 0, { data: item, priority });
+    } else {
+      this.nodes.push({ data: item, priority });
     }
   }
 
