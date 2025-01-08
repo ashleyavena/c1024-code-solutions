@@ -6,14 +6,11 @@ import { Document, DocumentIndex } from './map-index';
  */
 export function queryIndex(index: DocumentIndex, query: string): Set<Document> {
   const documentIndex = new Set<Document>();
-  const queryWords =
-    query.match(/\b(\w+)\b/g)?.map((word) => word.toLowerCase()) || [];
-  for (const word of queryWords) {
-    const documents = index.get(word);
-    if (documents) {
-      documents.forEach((doc) => documentIndex.add(doc));
-    }
-  }
+  const terms = query.toLocaleLowerCase().match(/\b(\w+)\b/g);
+  terms?.forEach((t) => {
+    const documents = index.get(t);
+    documents?.forEach((doc) => documentIndex.add(doc));
+  });
 
   return documentIndex;
 }

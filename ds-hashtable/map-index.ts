@@ -15,7 +15,7 @@ export type DocumentIndex = Map<string, Set<Document>>;
 export function buildIndex(docs: Document[]): DocumentIndex {
   const documentIndex = new Map<string, Set<Document>>();
   for (const doc of docs) {
-    const words = doc.content.match(/\b(\w+)\b/g);
+    const words = doc.content.match(/\b(\w+)\b/g); // this /\b(\w+)\b/g turns words into an array
     if (words) {
       for (let i = 0; i < words.length; i++) {
         const word = words[i].toLowerCase();

@@ -8,8 +8,10 @@ hash algorithm & indexing into a list is constant time
 
 - Briefly describe the Hash Table data structure.
   a data structure that stores key/ value pairs using a hash function, look up an item with the key and the hash table returns the value
+  the hash function returns an index and what bucket it will go into
 
 - What are some examples of when you would use a Hash Table?
+  Javascript objects are hash tables
   Search tables, caching, count frequencies
   fast data access, insertion, deletion
 
