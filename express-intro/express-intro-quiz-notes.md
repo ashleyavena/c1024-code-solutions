@@ -26,7 +26,7 @@ key features:
   app.listen()
 
 - What is a network `port`?
-  virtual logical endpoint for network communication
+  virtual logical start & end points for network communication
   Standards:
   HTTP: Port 80
   HTTPs: Port 443
