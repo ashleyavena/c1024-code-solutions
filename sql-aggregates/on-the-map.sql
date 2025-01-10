@@ -4,6 +4,12 @@ from "countries"
 join "cities"  on "countries"."countryId" = "cities"."countryId"
 group by  "countries"."countryId", "countries"."name";
 
+-- select count(*) as "TotalNumberCities"
+-- "countries"."name" as "countryName",
+-- from "countries"
+-- join "cities"  on "countries"."countryId" = "cities"."countryId"
+-- group by  "countries"."countryId", "countries"."name";
+
 
 -- List the number of "cities" per country in the "countries" table.
 
