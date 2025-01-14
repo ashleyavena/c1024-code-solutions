@@ -12,7 +12,35 @@ const db = new pg.Pool({
 
 const app = express();
 
-app.use(express.json());
+app.use(express.json()); // mounts the json middleware, so if a req that comes in w json it will parse
+
+// post = create
+// actors is the endpoint, database requires async function
+// $1 and $2
+
+app.post('/api/actors', async (req, res, next) => {
+  try {
+    const { firstName, lastName } = req.body; // in the body bc fN & lN being passed
+    // TODO: validate request, make sure there's a first name & last name
+
+    if (!firstName || !lastName) {
+      throw new ClientError(400, 'First and last name required');
+    }
+    const sql = `
+    insert into "actors" ("firstName", "lastName")
+    values ($1, $2)
+    returning *;
+    `;
+
+    // never do sequel injection like (${firstName}) always do $1
+
+    const result = await db.query(sql, [firstName, lastName]);
+    const actor = result.rows[0];
+    res.status(201).json(actor);
+  } catch (err) {
+    next(err);
+  }
+});
 
 // Endpoint for testing
 app.get('/api/actors/:actorId', async (req, res, next) => {
@@ -35,33 +63,16 @@ app.get('/api/actors/:actorId', async (req, res, next) => {
   }
 });
 
-app.post('/api/actors', async (req, res, next) => {
-  try {
-    const { firstName, lastName } = req.body;
-    if (!firstName || !lastName) {
-      throw new ClientError(400, 'First and last name required');
-    }
-    const sql = `
-    insert into "actors" ("firstName", "lastName")
-    values ($1, $2)
-    returning *;
-    `;
-    const params = [firstName, lastName];
-    const result = await db.query(sql, params);
-    const actor = result.rows[0];
-    res.status(201).json(actor);
-  } catch (err) {
-    next(err);
-  }
-});
-
 // http POST localhost:8080/api/actors firstName="Brendan" lastName="Eich"
 
 app.put('/api/actors/:actorId', async (req, res, next) => {
   try {
     const { actorId } = req.params;
     const { firstName, lastName } = req.body;
-    if (!actorId || !firstName || !lastName) {
+    if (!Number.isInteger(+actorId)) {
+      throw new ClientError(400, `Non-integer actorId: ${actorId}`);
+    }
+    if (!firstName || !lastName) {
       throw new ClientError(404, 'Actor Id, First and Last name required');
     }
 
@@ -73,10 +84,10 @@ app.put('/api/actors/:actorId', async (req, res, next) => {
 
     const params = [firstName, lastName, actorId];
     const result = await db.query(sql, params);
-    if (!result.rows[0]) {
+    const actor = result.rows[0];
+    if (!actor) {
       throw new ClientError(404, `actor ${actorId} not found`);
     }
-    const actor = result.rows[0];
     res.json(actor);
   } catch (err) {
     next(err);
@@ -97,12 +108,12 @@ app.delete('/api/actors/:actorId', async (req, res, next) => {
       WHERE "actorId" = $1
       RETURNING *;
     `;
-    const params = [actorId];
-    const result = await db.query(sql, params);
-    if (result.rowCount === 0) {
-      return res.status(404).json({ error: 'Actor not found' });
+    const result = await db.query(sql, [actorId]);
+    const actor = result.rows[0];
+    if (!actor) {
+      throw new ClientError(404, `actorId ${actorId} not found`);
     }
-    res.status(204).json(result.rows[0]);
+    res.sendStatus(204); // 204 means no content, if u tell it to create that it deletes the body the only way to return the response is to call .send or .json
   } catch (err) {
     next(err);
   }
