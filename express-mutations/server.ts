@@ -61,75 +61,54 @@ app.put('/api/actors/:actorId', async (req, res, next) => {
   try {
     const { actorId } = req.params;
     const { firstName, lastName } = req.body;
-    if (!firstName || !lastName) {
-      throw new ClientError(400, 'First and last name required');
+    if (!actorId || !firstName || !lastName) {
+      throw new ClientError(404, 'Actor Id, First and Last name required');
     }
-    const actorSql = `
-      SELECT * from "actors"
-      where "actorId" = $1;
-        `;
-    const actorParams = [actorId];
-    const result = await db.query(actorSql, actorParams);
-    const actor = result.rows[0];
-    if (!actorId) throw new ClientError(404, `actor ${actorId} not found`);
-    res.status(201).json(actor);
 
-    const updateActorSql = `
+    const sql = `
     UPDATE "actors"
     SET "firstName"= $1, "lastName"=$2
     WHERE "actorId" =$3
     RETURNING * ;`;
-    const updateActorParams = [firstName, lastName, actorId];
-    const updateActorResult = await db.query(updateActorSql, updateActorParams);
-    const updateActor = updateActorResult.rows[0];
-    res.status(200).json(updateActor);
+
+    const params = [firstName, lastName, actorId];
+    const result = await db.query(sql, params);
+    if (!result.rows[0]) {
+      throw new ClientError(404, `actor ${actorId} not found`);
+    }
+    const actor = result.rows[0];
+    res.json(actor);
   } catch (err) {
     next(err);
   }
 });
 
-// http PUT localhost:8080/api/actors/99 firstName="James" lastName="Gosling"
+// http PUT localhost:8080/api/actors/204 firstName="James" lastName="Gosling"
 
 app.delete('/api/actors/:actorId', async (req, res, next) => {
   try {
     const { actorId } = req.params;
-
-    const checkActorSql = `
-      select * from "actors"
-      where "actorId" = $1;
-    `;
-    const checkActorParams = [actorId];
-    const checkActorResult = await db.query(checkActorSql, checkActorParams);
-    const actor = checkActorResult.rows[0];
-    if (!actor) {
-      throw new ClientError(404, `actor ${actorId} not found`);
+    if (!actorId) {
+      throw new ClientError(404, `actorId ${actorId} not found`);
     }
 
-    const deleteCastMembersSql = `
-      DELETE FROM "castMembers"
-      WHERE "actorId" = $1;
-    `;
-    const deleteCastMembersParams = [actorId];
-    await db.query(deleteCastMembersSql, deleteCastMembersParams);
-
-    const deleteActorSql = `
+    const sql = `
       DELETE FROM "actors"
       WHERE "actorId" = $1
       RETURNING *;
     `;
-    const deleteActorParams = [actorId];
-    const deleteActorResult = await db.query(deleteActorSql, deleteActorParams);
-
-    if (!deleteActorResult.rowCount)
-      throw new ClientError(404, `actor ${actorId} not found`);
-
-    res.status(204).send();
+    const params = [actorId];
+    const result = await db.query(sql, params);
+    if (result.rowCount === 0) {
+      return res.status(404).json({ error: 'Actor not found' });
+    }
+    res.status(204).json(result.rows[0]);
   } catch (err) {
     next(err);
   }
 });
 
-// http DELETE localhost:8080/api/actors/99
+// http DELETE localhost:8080/api/actors/204
 
 app.use(errorMiddleware);
 
