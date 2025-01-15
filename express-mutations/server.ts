@@ -56,14 +56,12 @@ app.get('/api/actors/:actorId', async (req, res, next) => {
     const params = [actorId];
     const result = await db.query(sql, params);
     const actor = result.rows[0];
-    if (!actor) throw new ClientError(404, `actor ${actorId} not found`);
+    if (!actor) throw new ClientError(400, `actor ${actorId} not provided`);
     res.json(actor);
   } catch (err) {
     next(err);
   }
 });
-
-// http POST localhost:8080/api/actors firstName="Brendan" lastName="Eich"
 
 app.put('/api/actors/:actorId', async (req, res, next) => {
   try {
@@ -86,7 +84,7 @@ app.put('/api/actors/:actorId', async (req, res, next) => {
     const result = await db.query(sql, params);
     const actor = result.rows[0];
     if (!actor) {
-      throw new ClientError(404, `actor ${actorId} not found`);
+      throw new ClientError(400, `actor ${actorId} not provided`);
     }
     res.json(actor);
   } catch (err) {
@@ -94,13 +92,11 @@ app.put('/api/actors/:actorId', async (req, res, next) => {
   }
 });
 
-// http PUT localhost:8080/api/actors/204 firstName="James" lastName="Gosling"
-
 app.delete('/api/actors/:actorId', async (req, res, next) => {
   try {
     const { actorId } = req.params;
     if (!actorId) {
-      throw new ClientError(404, `actorId ${actorId} not found`);
+      throw new ClientError(404, `actorId ${actorId} does not exist`);
     }
 
     const sql = `
@@ -111,15 +107,13 @@ app.delete('/api/actors/:actorId', async (req, res, next) => {
     const result = await db.query(sql, [actorId]);
     const actor = result.rows[0];
     if (!actor) {
-      throw new ClientError(404, `actorId ${actorId} not found`);
+      throw new ClientError(400, `actorId ${actorId} not provided`);
     }
     res.sendStatus(204); // 204 means no content, if u tell it to create that it deletes the body the only way to return the response is to call .send or .json
   } catch (err) {
     next(err);
   }
 });
-
-// http DELETE localhost:8080/api/actors/204
 
 app.use(errorMiddleware);
 
