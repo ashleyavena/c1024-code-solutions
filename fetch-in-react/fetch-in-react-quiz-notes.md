@@ -18,6 +18,9 @@ fetch('https://api.example.com/data')
 1. check HTTP response status (not all http errors 404, 500 are considered exceptions by fetch)
 2. Handle network errors (use .catch() block)
 
+3. try/catch
+4. response.ok
+
 EX:
 fetch('https://api.example.com/data')
 .then(response => {
@@ -30,6 +33,7 @@ return response.json();
 .catch(error => console.error('Network error:', error));
 
 - How can `useEffect` be used to load data for a component?
+  async await function
   performs side effects like fetching data when a component renders
 
 EX:
@@ -54,9 +58,11 @@ return <div>{JSON.stringify(data)}</div>;
 
 - In a large-scale production app, what are some better alternatives for loading and managing backend data?
 
-1. state management libraries: to manage & cache global state \* backend data
-2. GraphQL & Apollo Client
-3. Server-side rendering SSR: frameworks like Next.js to prefetch data
+from a third-party library or network, its less network traffic
+you want to cache the data and use it each time, but useEffect doesn't do this (better for small scale application)
+you could use React Query or Vercel SWR with hooks
+
+or Server-side rendering SSR: frameworks like Next.js to prefetch data
 
 ## Notes
 

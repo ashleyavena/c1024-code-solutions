@@ -21,14 +21,15 @@ export function UserDetails({ userId, onCancel }: Props) {
         if (!response.ok) {
           throw new Error(`Response status: ${response.status}`);
         }
-        const json = await response.json();
-        setUser(json);
+        const data = (await response.json()) as User;
+        setUser(data);
       } catch (error) {
         setError(error);
       } finally {
         setIsLoading(false);
       }
     };
+    setIsLoading(true); // each time we click, it wont reset to show Loading... bc we did finally false so we have to do it manually
     fetchData();
   }, [userId]);
 

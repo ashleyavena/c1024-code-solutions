@@ -27,8 +27,8 @@ export function Users() {
         if (!response.ok) {
           throw new Error(`Response status: ${response.status}`);
         }
-        const json = await response.json();
-        setUsers(json);
+        const data = (await response.json()) as User[];
+        setUsers(data);
       } catch (error) {
         setError(error);
       } finally {
@@ -36,7 +36,7 @@ export function Users() {
       }
     };
     fetchData();
-  }, []); // why no dependencies? bc we only want initial render?
+  }, []); //  no dependencies? bc we only want initial render
 
   if (isLoading) {
     return <p>Loading...</p>;
