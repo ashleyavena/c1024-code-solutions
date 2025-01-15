@@ -10,6 +10,12 @@ const db = new pg.Pool({
   },
 });
 
+type Grade = {
+  name: string;
+  course: string;
+  score: number;
+};
+
 const app = express();
 
 app.use(express.json()); // Mounts the json middleware, if a req comes in with json it will parse
@@ -18,15 +24,12 @@ app.use(express.json()); // Mounts the json middleware, if a req comes in with j
 app.get('/api/grades', async (req, res, next) => {
   try {
     const sql = `
-    select * from "grades";
+      SELECT * FROM "grades";
     `;
-    const result = await db.query(sql);
-    if (result.rows.length === 0) {
-      return res.status(200).json([]); // If there are no rows, return an empty array
-    }
-    res.status(200).json(result.rows); // Return all rows
+    const result = await db.query(sql); // Directly return the rows, whether it's an empty array or contains data
+    res.json(result.rows); // 200 is the default status so you don't have to set it
   } catch (err) {
-    next(err); // Pass the error to the error middleware
+    next(err); // Pass the error to the error-handling middleware
   }
 });
 
@@ -34,21 +37,18 @@ app.get('/api/grades', async (req, res, next) => {
 app.get('/api/grades/:gradeId', async (req, res, next) => {
   try {
     const { gradeId } = req.params;
-    const id = +gradeId;
-    if (!Number.isInteger(id) || id <= 0) {
+    // input validation
+    if (!Number.isInteger(+gradeId) || +gradeId <= 0) {
       throw new ClientError(400, 'gradeId must be a positive integer'); // Validate that gradeId is a positive integer
     }
     const sql = `
     select * from "grades"
     where "gradeId" = $1;
     `;
-    const params = [id];
-    const result = await db.query(sql, params);
+    const result = await db.query(sql, [gradeId]); // bc $1 in sql we need to pass array
     const grade = result.rows[0];
-    if (!grade) {
-      throw new ClientError(404, `gradeId ${gradeId} not found`); // If gradeId does not exist, return a 404 error
-    }
-    res.status(200).json(grade);
+    validateGradeExists(grade, gradeId);
+    res.json(grade);
   } catch (err) {
     next(err);
   }
@@ -56,21 +56,16 @@ app.get('/api/grades/:gradeId', async (req, res, next) => {
 // inserts a new grade into the grades table and returns the entire created grade
 app.post('/api/grades', async (req, res, next) => {
   try {
-    const { name, course, score } = req.body;
-    if (!name || !course || score === undefined) {
-      throw new ClientError(400, 'name, course, score required');
-    }
-    if (!Number.isInteger(score) || score < 0 || score > 100) {
-      throw new ClientError(400, 'score must be integer between 0 and 100');
-    }
+    const { name, course, score } = req.body as Grade;
+    // input validation
+    validateBody(name, course, score);
     const sql = `
       insert into "grades" ("name", "course", "score")
       values ($1,$2,$3)
       returning *;
       `;
-    const result = await db.query(sql, [name, course, score]);
-    const grades = result.rows[0];
-    res.status(201).json(grades);
+    const result = await db.query<Grade>(sql, [name, course, score]);
+    res.status(201).json(result.rows[0]);
   } catch (err) {
     next(err);
   }
@@ -80,8 +75,9 @@ app.put('/api/grades/:gradeId', async (req, res, next) => {
   try {
     const { gradeId } = req.params;
     const { name, course, score } = req.body;
-    const id = parseInt(gradeId, 10); // Parse gradeId and score
-    const parsedScore = parseInt(score, 10);
+    const id = +gradeId; // Parse gradeId and score
+    const parsedScore = +score;
+
     if (
       !name ||
       !course ||
@@ -103,37 +99,28 @@ app.put('/api/grades/:gradeId', async (req, res, next) => {
       where "gradeId" =$4
       returning *;
     `;
-    const result = await db.query(sql, [name, course, parsedScore, id]);
+    const result = await db.query<Grade>(sql, [name, course, parsedScore, id]);
     const grade = result.rows[0];
-    if (!grade) {
-      throw new ClientError(404, `gradeId ${gradeId} not found`);
-    }
-    res.status(200).json(grade);
+    validateGradeExists(grade, gradeId);
+    res.json(grade);
   } catch (err) {
     next(err);
   }
 });
+
 //  deletes the grade in the grades table with the given gradeId.
 app.delete('/api/grades/:gradeId', async (req, res, next) => {
   try {
     const { gradeId } = req.params;
-    const id = +gradeId;
-    if (!Number.isInteger(id) || id <= 0) {
-      throw new ClientError(400, 'gradeId must be a positive integer'); // Validate that gradeId is a positive integer
-    }
+    validateGradeId(gradeId);
     const sql = `
         delete from "grades"
         where "gradeId" = $1
         returning *;
         `;
-    const result = await db.query(sql, [id]);
+    const result = await db.query(sql, [gradeId]);
     const grade = result.rows[0];
-    if (!grade) {
-      throw new ClientError(
-        404,
-        `gradeId ${gradeId} does not exist in database`
-      );
-    }
+    validateGradeExists(grade, gradeId);
     res.sendStatus(204);
   } catch (err) {
     next(err);
@@ -145,3 +132,24 @@ app.use(errorMiddleware);
 app.listen(8080, () => {
   console.log('Express server is listening on port 8080');
 });
+
+function validateGradeId(gradeId: string): void {
+  if (!Number.isInteger(+gradeId) || +gradeId <= 0) {
+    throw new ClientError(400, 'gradeId must be a positive integer'); // Validate that gradeId is a positive integer
+  }
+}
+
+function validateBody(name: string, course: string, score: number): void {
+  if (!name || !course || score === undefined) {
+    throw new ClientError(400, 'name, & course & score required');
+  }
+  if (!Number.isInteger(score) || score < 0 || score > 100) {
+    throw new ClientError(400, 'score must be integer between 0 and 100');
+  }
+}
+
+function validateGradeExists(grade: Grade | undefined, gradeId: string): void {
+  if (!grade) {
+    throw new ClientError(404, `gradeId ${gradeId} does not exist in database`);
+  }
+}
