@@ -40,7 +40,7 @@ app.get('/api/products/:productId', async (req, res, next) => {
   try {
     const productId = Number(req.params.productId);
     if (!Number.isInteger(productId) || productId < 1) {
-      throw new ClientError(400, 'productId must be a positive integer');
+      throw new ClientError(404, 'productId must be a positive integer');
     }
     const sql = `
       SELECT *
@@ -49,7 +49,7 @@ app.get('/api/products/:productId', async (req, res, next) => {
     `;
     const result = await db.query<Product>(sql, [productId]);
     if (result.rows.length === 0) {
-      throw new ClientError(400, 'productId must be a positive integer');
+      throw new ClientError(404, 'productId must be a positive integer');
     }
     res.json(result.rows[0]);
   } catch (err) {
