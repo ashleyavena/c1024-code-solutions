@@ -42,22 +42,15 @@ app.get('/api/products/:productId', async (req, res, next) => {
     if (!Number.isInteger(productId) || productId < 1) {
       throw new ClientError(400, 'productId must be a positive integer');
     }
-
     const sql = `
       SELECT *
         FROM "products"
         WHERE "productId" = $1;
     `;
-    const params = [productId];
-    const result = await db.query<Product>(sql, params);
-
+    const result = await db.query<Product>(sql, [productId]);
     if (result.rows.length === 0) {
-      // No product found
-      return res
-        .status(404)
-        .json({ error: `Product with productId ${productId} not found` });
+      throw new ClientError(400, 'productId must be a positive integer');
     }
-
     res.json(result.rows[0]);
   } catch (err) {
     next(err);
@@ -77,16 +70,6 @@ app.listen(process.env.PORT, () => {
 //   createdAt: string;
 //   updatedAt: string;
 // };
-
-// const db = new pg.Pool({
-//   connectionString: process.env.DATABASE_URL,
-//   ssl: {
-//     rejectUnauthorized: false,
-//   },
-// });
-
-// const app = express();
-// app.use(express.json());
 
 // app.get('/api/products', async (req, res, next) => {
 //   try {
@@ -178,10 +161,4 @@ app.listen(process.env.PORT, () => {
 //   } catch (err) {
 //     next(err);
 //   }
-// });
-
-// app.use(errorMiddleware);
-
-// app.listen(process.env.PORT, () => {
-//   console.log(`express server listening on port ${process.env.PORT}`);
 // });
