@@ -15,5 +15,6 @@ export async function readProduct(
   if (!response.ok) {
     throw new Error(`Failed to fetch product. Status: ${response.status}`);
   }
-  return response.json();
+  const data = (await response.json()) as Product;
+  return data;
 }
