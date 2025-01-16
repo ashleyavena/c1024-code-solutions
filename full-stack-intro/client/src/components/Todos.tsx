@@ -9,9 +9,12 @@ export type UnsavedTodo = {
   task: string;
   isCompleted: boolean;
 };
+
 export type Todo = UnsavedTodo & {
   todoId: number;
 };
+
+// todo is an unsaved WITH an id
 
 export function Todos() {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -42,22 +45,22 @@ export function Todos() {
     try {
       const response = await fetch('/api/todos', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newTodo), // SERIALIZE the todo object in the body with JSON.stringify()
+        headers: { 'Content-Type': 'application/json' }, // the body contains an object that has been stringified
+        body: JSON.stringify(newTodo), // SERIALIZE the todo object in the body with JSON.stringify() to send to back end
       });
       if (!response.ok) throw new Error(`response status ${response.status}`);
       const data = (await response.json()) as Todo;
-      setTodos((prevTodos) => [...prevTodos, data]); // create a new array containing the contents of the old array, plus the object returned by the server
+      setTodos((prevTodos) => [...prevTodos, data]); // create a new array with the old todos, plus the new todos returned by the server
       // with Array.prototype.concat or use the spread operator: `[...oldArray, addedItem]`
     } catch (error) {
-      alert('there is an error' + error);
+      alert('there is an error' + String(error)); // bc if we setError then it replaces the whole page with the error, instead alert is better
     }
   }
 
   /* Implement toggleCompleted to toggle the completed state of a todo. Hints are at the bottom of the file. */
   async function toggleCompleted(todo: Todo) {
     try {
-      const modifiedTodo = { ...todo, isCompleted: !todo.isCompleted }; // Toggle the todo's "isCompleted" status
+      const modifiedTodo = { ...todo, isCompleted: !todo.isCompleted }; // Toggle the todo's "isCompleted" status, the last one wins in object literal notation, so isCompleted wins
       const response = await fetch(`/api/todos/${todo.todoId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -65,14 +68,10 @@ export function Todos() {
       });
       if (!response.ok) throw new Error(`response status ${response.status}`);
       const data = (await response.json()) as Todo;
-      setTodos(
-        (
-          prevArray // create a shallow copy of the todos array from state with map
-        ) =>
-          prevArray.map((newArray) =>
-            newArray.todoId === data.todoId ? data : newArray
-          )
+      const updatedTodo = todos.map((newArray) =>
+        newArray.todoId === data.todoId ? data : newArray
       );
+      setTodos(updatedTodo); // create a shallow copy of the todos array from state with map if you want to modify an object
     } catch (error) {
       alert('there is an error' + error);
     }

@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import 'dotenv/config'; // imports all the ports and env needed
 import pg from 'pg';
 import express from 'express';
 import { ClientError, errorMiddleware } from './lib/index.js';
