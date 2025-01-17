@@ -11,6 +11,7 @@ export function ProductDetails() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<unknown>();
 
+  // need to access addToCart function from Cart Context, destructure using useContext(CartContext) <- we updated this in useCart.ts
   const { addToCart } = useCart();
 
   useEffect(() => {
@@ -32,7 +33,7 @@ export function ProductDetails() {
 
   function handleAddToCart() {
     if (!product) throw new Error('Should never happen');
-    addToCart(product);
+    addToCart(product); // modify  handleAddToCart to add product to the cart
     alert(`Added ${product?.name} to cart`);
     navigate('/');
   }

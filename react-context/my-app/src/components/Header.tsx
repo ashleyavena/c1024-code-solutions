@@ -3,7 +3,7 @@ import { Link, Outlet } from 'react-router-dom';
 import { useCart } from './useCart';
 
 export function Header() {
-  const { cartItems } = useCart();
+  const { cartItems } = useCart(); // access cartItems from CartContext and destructure
 
   return (
     <div>
@@ -35,3 +35,4 @@ export function Header() {
     </div>
   );
 }
+// update the number of items in cart with the length of the cartItems array

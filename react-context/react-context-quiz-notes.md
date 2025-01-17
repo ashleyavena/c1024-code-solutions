@@ -10,11 +10,7 @@ Answer the following questions in the provided markdown file before turning in t
   ex: user authentication, themes, language settings
 
 - What values can be stored in context?
-  any JavaScript value
-  primitives: strings, numbers, booleans(themes: dark or light)
-  objects: configure data or complex states
-  functions
-  arrays
+  any JavaScript values
 
 - How do you create context and make it available to the components?
 
@@ -66,6 +62,7 @@ const YourComponent = () => (
 );
 
 - When would you use context? (in addition to the best answer: "rarely")
+  favorites
   changing themes (dark/light)
   user authentication
   language/localization
