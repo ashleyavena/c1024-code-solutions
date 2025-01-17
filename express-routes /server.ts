@@ -3,7 +3,7 @@ import express from 'express';
 const app = express();
 
 app.use((req, res, next) => {
-  console.log('The date is', new Date());
+  console.log('The date is', new Date(), req.method, req.path);
   next(); // express middleware that runs for every request
 });
 
