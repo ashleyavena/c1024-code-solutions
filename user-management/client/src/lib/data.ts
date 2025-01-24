@@ -1,6 +1,12 @@
+import CryptoJS from 'crypto-js';
 import { User } from '../components/UserContext';
 
 const authKey = 'um.auth';
+const secretKey = 'mySecret';
+
+if (!secretKey) {
+  throw new Error('TOKEN_SECRET is not defined in env variables');
+}
 
 type Auth = {
   user: User;
@@ -9,23 +15,34 @@ type Auth = {
 
 export function saveAuth(user: User, token: string): void {
   const auth: Auth = { user, token };
-  localStorage.setItem(authKey, JSON.stringify(auth));
+  const encryptedAuth = CryptoJS.AES.encrypt(
+    // create auth, stringify, then encrypt
+    JSON.stringify(auth),
+    secretKey
+  ).toString();
+
+  localStorage.setItem(authKey, encryptedAuth);
 }
 
 export function removeAuth(): void {
   localStorage.removeItem(authKey);
 }
 
+function readAuth(): Auth | undefined {
+  const encryptedAuth = localStorage.getItem(authKey); // when u take it out u decrypt and then parse
+  if (!encryptedAuth) return undefined;
+  const bytes = CryptoJS.AES.decrypt(encryptedAuth, secretKey);
+  const decryptedAuth = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+
+  return decryptedAuth;
+}
+
 export function readUser(): User | undefined {
-  const auth = localStorage.getItem(authKey);
-  if (!auth) return undefined;
-  return (JSON.parse(auth) as Auth).user;
+  return readAuth()?.user;
 }
 
 export function readToken(): string | undefined {
-  const auth = localStorage.getItem(authKey);
-  if (!auth) return undefined;
-  return (JSON.parse(auth) as Auth).token;
+  return readAuth()?.token;
 }
 
 export type UnsavedTodo = {

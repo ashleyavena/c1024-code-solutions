@@ -79,6 +79,7 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
 
     const payload = { userId, username };
     const token = jwt.sign(payload, hashKey, { expiresIn: '1h' }); // expiration for auto login
+
     res.json({ user: payload, token });
   } catch (err) {
     next(err);
