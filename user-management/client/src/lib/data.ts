@@ -12,6 +12,7 @@ type Auth = {
   user: User;
   token: string;
 };
+// front end token encryption
 
 export function saveAuth(user: User, token: string): void {
   const auth: Auth = { user, token };
